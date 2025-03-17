@@ -1,0 +1,5 @@
+app:
+  url: http://localhost:8080
+  endpoint: /todos
+  username: admin
+  password: admin
