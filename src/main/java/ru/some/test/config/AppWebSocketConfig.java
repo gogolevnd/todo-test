@@ -3,7 +3,6 @@ package ru.some.test.config;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import ru.some.test.common.YamlPropertySourceFactory;
 
 @Configuration
