@@ -1,11 +1,9 @@
 package ru.some.test.app.general.steps;
 
 import io.qameta.allure.Step;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 import ru.some.test.app.general.model.Todo;
 
-@Getter
 @Component
 public class AppPrepareDataSteps {
 

@@ -5,7 +5,6 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,6 @@ import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
-@Getter
 public class AppRemoteSteps {
     @Value("${app.url}")
     private String url;
