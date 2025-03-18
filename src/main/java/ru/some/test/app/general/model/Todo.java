@@ -1,4 +1,4 @@
-package ru.some.test.app.model;
+package ru.some.test.app.general.model;
 
 import lombok.Builder;
 import lombok.Getter;

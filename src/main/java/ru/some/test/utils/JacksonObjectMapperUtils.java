@@ -1,6 +1,7 @@
 package ru.some.test.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
@@ -27,5 +28,13 @@ public class JacksonObjectMapperUtils {
             return null;
         }
         return objectMapper.readerForListOf(valueType).readValue(content);
+    }
+
+    @SneakyThrows
+    public <T> T readValue(String content, Class<T> valueType) {
+        if (content == null) {
+            return null;
+        }
+        return objectMapper.readValue(content, valueType);
     }
 }

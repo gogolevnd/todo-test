@@ -1,19 +1,23 @@
-package ru.some.test;
+package ru.some.test.todo.get;
 
-import io.restassured.response.Response;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.some.test.app.model.Todo;
-import ru.some.test.app.steps.AssertionSteps;
-import ru.some.test.app.steps.PrepareDataSteps;
+import ru.some.test.app.general.model.Todo;
+import ru.some.test.app.general.steps.AssertionSteps;
+import ru.some.test.app.general.steps.PrepareDataSteps;
+import ru.some.test.todo.AbstractTest;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class GettingTodosTest extends AbstractTest{
+@Epic("Todo-app")
+@Feature("GET Todos")
+@Story("Positive tests")
+public class GettingPositiveTodosTest extends AbstractTest {
     @Autowired
     PrepareDataSteps prepareSteps;
     @Autowired
@@ -24,20 +28,13 @@ public class GettingTodosTest extends AbstractTest{
 /*
     CheckList:
     1) Check if the adapter is able to adequately work with queryParams - offset and limit (Unit-tests)
-        - wrong data-types
-    1) Check if the controller is able to adequately respond to different http-requests (Composite-tests(MVC))
+    2) Check if the controller is able to adequately respond to different http-requests (Composite-tests(MVC))
         - right request with/without queryParams
-        - wrong request:
-            - wrong HTTP-method
-            - wrong Content-type of the request
-            - wrong endpoint
-            - wrong params
-     3) Integration-tests:
+    3) Integration-tests:
         - check if the controller is able to respond without todos
         - check if the controller is able to respond with list of todos
         - check if the controller is able to work without params
         - check if the controller is able to work with one param
-        - check if the controller is able to respond with not documented params' values
 */
 
     @Test
@@ -56,7 +53,7 @@ public class GettingTodosTest extends AbstractTest{
         );
 
         assertionSteps.check(
-            appAggregationSteps.getTodos(
+            getAppAggregationSteps().getTodos(
                 Map.of(),
                 200
             ),
@@ -66,13 +63,13 @@ public class GettingTodosTest extends AbstractTest{
                 0)
         );
 
-        getTodos().addAll(List.of(firstTodo, secondTodo));
+        getTodosList().addAll(List.of(firstTodo, secondTodo));
 
-        appAggregationSteps.createTodo(firstTodo, "", 201);
-        appAggregationSteps.createTodo(secondTodo, "", 201);
+        getAppAggregationSteps().createTodo(firstTodo, "", 201);
+        getAppAggregationSteps().createTodo(secondTodo, "", 201);
 
         assertionSteps.check(
-            appAggregationSteps.getTodos(
+            getAppAggregationSteps().getTodos(
                 Map.of(),
                 200
             ),
@@ -83,42 +80,16 @@ public class GettingTodosTest extends AbstractTest{
         );
 
         assertionSteps.check(
-            appAggregationSteps.getTodos(
+            getAppAggregationSteps().getTodos(
                 Map.of(OFFSET_KEY, 1,
                     LIMIT_KEY, 2),
                 200),
             appResponse -> assertionSteps.verifyTodosExistInGetResponse(
                 appResponse,
                 List.of(firstTodo.id(), secondTodo.id()),
-                1),
+                2),
             appResponse -> assertionSteps.verifyTodo(appResponse, secondTodo)
         );
 
-    }
-
-    @Test
-    void processWrongLimitValueGettingTodo(){
-        assertionSteps.check(
-            appAggregationSteps.getTodos(
-                Map.of(LIMIT_KEY, -1),
-                400
-            ),
-            appResponse -> assertThat(appResponse.body().prettyPrint())
-                .as("Тело ответа эндпоинта не соответствует ожидаемому")
-                .isEqualTo("Invalid query string")
-        );
-    }
-
-    @Test
-    void processWrongOffsetValueGettingTodo(){
-        assertionSteps.check(
-            appAggregationSteps.getTodos(
-                Map.of(OFFSET_KEY, -1),
-                400
-            ),
-            appResponse -> assertThat(appResponse.body().prettyPrint())
-                .as("Тело ответа эндпоинта не соответствует ожидаемому")
-                .isEqualTo("Invalid query string")
-        );
     }
 }
