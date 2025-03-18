@@ -16,7 +16,7 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 @Getter
-public class RemoteSteps {
+public class AppRemoteSteps {
     @Value("${app.url}")
     private String url;
     @Value("${app.port}")

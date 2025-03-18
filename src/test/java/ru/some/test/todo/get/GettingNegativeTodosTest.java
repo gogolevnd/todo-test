@@ -5,8 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.some.test.app.general.steps.AssertionSteps;
-import ru.some.test.app.general.steps.PrepareDataSteps;
+import ru.some.test.app.general.steps.AppAssertionSteps;
 import ru.some.test.todo.AbstractTest;
 
 import java.util.Map;
@@ -18,9 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Story("Negative tests")
 public class GettingNegativeTodosTest extends AbstractTest {
     @Autowired
-    PrepareDataSteps prepareSteps;
-    @Autowired
-    AssertionSteps assertionSteps;
+    AppAssertionSteps assertionSteps;
     private static final String OFFSET_KEY = "offset";
     private static final String LIMIT_KEY = "limit";
 

@@ -2,11 +2,9 @@ package ru.some.test.app.websocket.steps;
 
 import io.qameta.allure.Step;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
-import ru.some.test.app.general.model.Todo;
-import ru.some.test.app.websocket.model.WebSocketMessage;
+import ru.some.test.app.websocket.model.AppWebSocketMessage;
 import ru.some.test.app.websocket.service.AppWebsocketService;
 import ru.some.test.app.websocket.service.CustomWebsocketHandler;
 
@@ -32,7 +30,7 @@ public class AppWebsocketRemoteSteps {
     }
 
     @Step("Получаем список сообщений из ws")
-    public List<WebSocketMessage> receiveMessages(Predicate<List<WebSocketMessage>> predicate) {
+    public List<AppWebSocketMessage> receiveMessages(Predicate<List<AppWebSocketMessage>> predicate) {
         return await().until(
             handler::getList,
             predicate

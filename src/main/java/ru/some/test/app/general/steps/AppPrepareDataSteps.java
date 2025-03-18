@@ -7,7 +7,7 @@ import ru.some.test.app.general.model.Todo;
 
 @Getter
 @Component
-public class PrepareDataSteps {
+public class AppPrepareDataSteps {
 
     @Step("Подготавливаем сущность todo[id = {id}, text = {text}, completed = {completed}]")
     public Todo prepareDefaultTodo(long id, String text, boolean completed){

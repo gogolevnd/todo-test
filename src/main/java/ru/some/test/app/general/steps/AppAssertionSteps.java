@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @Component
-public class AssertionSteps extends AbstractAssertionsSteps {
+public class AppAssertionSteps extends AbstractAssertionsSteps {
 
     @Step("Проверяем поля сущности {todo}")
     public void verifyTodo(Response getResponse, Todo todo) {

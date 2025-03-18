@@ -13,8 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Component
 @RequiredArgsConstructor
 public class AppAggregationSteps {
-    private final RemoteSteps remoteSteps;
-    private final AssertionSteps assertionSteps;
+    private final AppRemoteSteps remoteSteps;
+    private final AppAssertionSteps assertionSteps;
     private static final String ID_KEY = "id";
 
     public void createTodo(Todo todo, String body, int statusCode) {

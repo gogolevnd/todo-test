@@ -6,8 +6,8 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.some.test.app.general.model.Todo;
-import ru.some.test.app.general.steps.AssertionSteps;
-import ru.some.test.app.general.steps.PrepareDataSteps;
+import ru.some.test.app.general.steps.AppAssertionSteps;
+import ru.some.test.app.general.steps.AppPrepareDataSteps;
 import ru.some.test.todo.AbstractTest;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.UUID;
 @Story("Positive tests")
 public class GettingPositiveTodosTest extends AbstractTest {
     @Autowired
-    PrepareDataSteps prepareSteps;
+    AppPrepareDataSteps prepareSteps;
     @Autowired
-    AssertionSteps assertionSteps;
+    AppAssertionSteps assertionSteps;
     private static final String OFFSET_KEY = "offset";
     private static final String LIMIT_KEY = "limit";
 

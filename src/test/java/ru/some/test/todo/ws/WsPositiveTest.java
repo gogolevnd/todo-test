@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.web.socket.WebSocketSession;
 import ru.some.test.app.general.model.Todo;
-import ru.some.test.app.general.steps.PrepareDataSteps;
-import ru.some.test.app.websocket.model.WebSocketMessage;
+import ru.some.test.app.general.steps.AppPrepareDataSteps;
+import ru.some.test.app.websocket.model.AppWebSocketMessage;
 import ru.some.test.app.websocket.model.WsMessageType;
 import ru.some.test.app.websocket.steps.AppWebsocketAssertionSteps;
 import ru.some.test.app.websocket.steps.AppWebsocketRemoteSteps;
@@ -31,7 +31,7 @@ public class WsPositiveTest extends AbstractTest {
     @Autowired
     AppWebsocketRemoteSteps remoteSteps;
     @Autowired
-    PrepareDataSteps prepareDataSteps;
+    AppPrepareDataSteps prepareDataSteps;
     @Autowired
     AppWebsocketAssertionSteps assertionSteps;
 
@@ -56,7 +56,7 @@ public class WsPositiveTest extends AbstractTest {
 
         getTodosList().add(todo);
 
-        List<WebSocketMessage> list = remoteSteps.receiveMessages(
+        List<AppWebSocketMessage> list = remoteSteps.receiveMessages(
             messages -> messages.stream().anyMatch(
                 el -> todo.equals(el.data())
             )
