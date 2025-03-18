@@ -20,7 +20,7 @@ To run the application locally, follow these steps:
 
 ## Project Configuration
 
-The project is written using Spring Boot to simplify dependency injection and dependency management. The annotation `@SpringJUnitConfig` let us use reduced spring context and compine different components of the project. The parameter `spring.profiles.active` let us pass different parameters to test system locally and remote on server (CICD).
+The project is written using Spring Boot to simplify dependency injection and dependency management. The annotation `@SpringJUnitConfig` let us use reduced spring contexts and combine different components of the project. The parameter `spring.profiles.active` let us pass different parameters to test system locally and remote on server (CICD).
 
 ## Testing
 
