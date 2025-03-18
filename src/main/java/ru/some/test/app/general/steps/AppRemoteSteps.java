@@ -37,8 +37,8 @@ public class AppRemoteSteps {
             .request(Method.POST, String.format("http://%s:%s%s", url, port, appEndpoint));
     }
 
-    @Step("Отправляем запрос на получение сущностей с параметрами '{queryParams}'")
-    public <T> Response prepareGetRequests(Map<String, Integer> queryParams) {
+    @Step("Отправляем запрос на получение сущностей")
+    public Response prepareGetRequests(Map<String, Integer> queryParams) {
         return RestAssured.with()
             .queryParams(queryParams)
             .contentType(ContentType.JSON)
@@ -59,7 +59,7 @@ public class AppRemoteSteps {
     }
 
     @Step("Отправляем запрос на удаление сущности с id = {value}")
-    public <T> Response prepareDeleteRequest(String key,
+    public Response prepareDeleteRequest(String key,
                                              long value) {
         return RestAssured.with()
             .contentType(ContentType.JSON)
